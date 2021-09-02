@@ -1,0 +1,9 @@
+
+
+sudo docker run -v nd013-c1-vision-starter:/app/project/ -ti project-dev-nl bash
+
+
+sudo docker run -it --rm --name udacity_cv -v course_project:/app/project/ -p 8888:8888 project-dev
+
+
+
