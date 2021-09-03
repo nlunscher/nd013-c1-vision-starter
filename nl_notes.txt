@@ -1,7 +1,7 @@
 
 # Setup the data
 
-sudo docker run -it --rm --name udacity_cv --shm-size=2g -v /media/nlunscher/AVIN_drive_3/Waymo:/app/project/ -p 8888:8888 project-dev
+sudo docker run -it --rm --name udacity_cv --shm-size=2g -v /media/nlunscher/AVIN_drive_3/Waymo:/app/project/  project-dev
 
 sudo docker start udacity_cv
 sudo docker attach udacity_cv
