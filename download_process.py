@@ -33,6 +33,11 @@ def create_tf_example(filename, encoded_jpeg, annotations, resize=True):
         encoded_jpeg = tf.io.encode_jpeg(image_res).numpy()
         width, height = 640, 640
 
+    # Get original size
+    encoded_jpg_io = io.BytesIO(encoded_jpeg)
+    image = Image.open(encoded_jpg_io)
+    original_width, original_height = image.size
+
     mapping = {1: 'vehicle', 2: 'pedestrian', 4: 'cyclist'}
     image_format = b'jpg'
     xmins = []
@@ -46,10 +51,10 @@ def create_tf_example(filename, encoded_jpeg, annotations, resize=True):
     for ann in annotations:
         xmin, ymin = ann.box.center_x - 0.5 * ann.box.length, ann.box.center_y - 0.5 * ann.box.width
         xmax, ymax = ann.box.center_x + 0.5 * ann.box.length, ann.box.center_y + 0.5 * ann.box.width
-        xmins.append(xmin / width)
-        xmaxs.append(xmax / width)
-        ymins.append(ymin / height)
-        ymaxs.append(ymax / height)
+        xmins.append(xmin / original_width)
+        xmaxs.append(xmax / original_width)
+        ymins.append(ymin / original_height)
+        ymaxs.append(ymax / original_height)
         classes.append(ann.type)
         classes_text.append(mapping[ann.type].encode('utf8'))
 
@@ -151,5 +156,5 @@ if __name__ == "__main__":
     # init ray
     ray.init(num_cpus=cpu_count())
 
-    workers = [download_and_process.remote(fn, temp_dir, data_dir) for fn in filenames[:100]]
+    workers = [download_and_process.remote(fn, temp_dir, data_dir) for fn in filenames[:1]]
     _ = ray.get(workers)
