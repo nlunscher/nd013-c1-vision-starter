@@ -16,21 +16,26 @@ def split(data_dir):
     args:
         - data_dir [str]: data directory, /mnt/data
     """
-    
+
     print(data_dir)
+
+    # Get all the tfrecord files in the directory
     files = os.listdir(data_dir)
     files = [f for f in files if f.endswith(".tfrecord")]
 
     if len(files) < 1:
         return
 
+    # Shuffle files
     np.random.shuffle(files)
     # print(files)
 
+    # Define splits
     train_split = 0.7
     val_split = 0.1
     test_split = 0.2
 
+    # Split the files
     val_num_files = int(np.round(val_split * len(files)))
     test_num_files = int(np.round(test_split * len(files)))
 
@@ -44,6 +49,7 @@ def split(data_dir):
     print(val_num_files, test_num_files, train_num_files)
     print(len(val_files), len(test_files), len(train_files))
 
+    # Move the files into new folders
     os.makedirs(os.path.join(data_dir, "train"), exist_ok=True)
     os.makedirs(os.path.join(data_dir, "val"), exist_ok=True)
     os.makedirs(os.path.join(data_dir, "test"), exist_ok=True)

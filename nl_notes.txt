@@ -17,5 +17,26 @@ sudo docker start udacity_cv_project
 sudo docker attach udacity_cv_project
 
 
+# Running training
+
+# new config
+
+python edit_config.py \
+--train_dir ../data/waymo_processed/train \
+--eval_dir ../data/waymo_processed/val \
+--batch_size 2 \
+--checkpoint training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 \
+--label_map label_map.pbtxt
+
+
+# Training
+
+python experiments/model_main_tf2.py --model_dir=training/reference/ --pipeline_config_path=training/reference/pipeline_new.config
+
+
+
+x-special/nautilus-clipboard
+copy
+file:///home/nlunscher/Documents/Learning/Udacity_Self_Driving_Car_Engineer/2_Computer_Vision/course_project/nd013-c1-vision-starter/training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/checkpoint
 
 

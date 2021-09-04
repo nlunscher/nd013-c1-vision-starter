@@ -1,3 +1,7 @@
 *.pyc
-training/*
+training/pretrained-models/*
+*ckpt*
+*checkpoint*
+*events.out*
 .ipynb_checkpoints/*
+
