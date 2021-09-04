@@ -16,8 +16,7 @@ def split(data_dir):
     args:
         - data_dir [str]: data directory, /mnt/data
     """
-    # TODO: Implement function
-
+    
     print(data_dir)
     files = os.listdir(data_dir)
     files = [f for f in files if f.endswith(".tfrecord")]
