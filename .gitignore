@@ -4,4 +4,4 @@ training/pretrained-models/*
 *checkpoint*
 *events.out*
 .ipynb_checkpoints/*
-
+*.zip
