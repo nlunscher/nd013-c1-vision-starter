@@ -5,3 +5,5 @@ training/pretrained-models/*
 *events.out*
 .ipynb_checkpoints/*
 *.zip
+*.mp4
+**/exported_model
