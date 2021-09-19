@@ -75,23 +75,10 @@ edit
 /usr/local/lib/python3.6/dist-packages/pycocotools/cocoeval.py", line 507
 
 
+Tensorboard
 
+tensorboard --logdir=.
 
-
-# Results
-# Eval
-
-Batch 2
-Steps 1000
-
-
-
-Batch 16
-Steps 1000
-
-
-Batch 8
-Steps 25000
 
 
 
